@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320" width="1200" height="320">
+  <!-- VDF banner — abstract "compressed archive" artwork -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#160F3A"/>
+      <stop offset="1" stop-color="#062B33"/>
+    </linearGradient>
+    <linearGradient id="stroke1" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#5B3DF5"/>
+      <stop offset="1" stop-color="#00C2D1"/>
+    </linearGradient>
+    <radialGradient id="glow1" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#5B3DF5" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#5B3DF5" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#00C2D1" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#00C2D1" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="320" rx="24" fill="url(#bg)"/>
+  <circle cx="220" cy="110" r="210" fill="url(#glow1)"/>
+  <circle cx="980" cy="240" r="230" fill="url(#glow2)"/>
+
+  <!-- compression streams -->
+  <path d="M40 250 C 240 250 260 70 460 70 S 680 250 880 250 1100 110 1160 110"
+        fill="none" stroke="url(#stroke1)" stroke-width="6" stroke-linecap="round" opacity="0.9"/>
+  <path d="M40 285 C 240 285 260 105 460 105 S 680 285 880 285 1100 145 1160 145"
+        fill="none" stroke="#46506B" stroke-width="2.5" stroke-dasharray="2 9" stroke-linecap="round"/>
+
+  <!-- embedded sheets -->
+  <g opacity="0.95">
+    <rect x="500" y="52" width="200" height="216" rx="14" fill="#0E0B2A" opacity="0.85" transform="rotate(-8 600 160)"/>
+    <rect x="510" y="46" width="200" height="216" rx="14" fill="#181146" transform="rotate(-4 610 154)"/>
+    <rect x="520" y="40" width="200" height="216" rx="14" fill="url(#stroke1)"/>
+    <path d="M585 90 L620 172 L655 90" fill="none" stroke="#FFFFFF" stroke-width="16"
+          stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M573 212 H667" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round" opacity="0.92"/>
+  </g>
+
+  <!-- spark nodes -->
+  <g fill="#8F7BFF">
+    <circle cx="120" cy="130" r="4"/>
+    <circle cx="180" cy="90" r="3"/>
+    <circle cx="1080" cy="80" r="4"/>
+    <circle cx="1020" cy="200" r="3"/>
+  </g>
+  <g fill="#38E1E8">
+    <circle cx="90" cy="180" r="3"/>
+    <circle cx="1120" cy="150" r="4"/>
+    <circle cx="940" cy="60" r="3"/>
+  </g>
+</svg>

@@ -1,0 +1,175 @@
+---
+title: The VDF Format — Vacter Document File
+author: Vacter Project
+keywords: vdf, zolto, document format, archive
+---
+
+@var format = VDF 1.0
+@var year = 2026
+
+# The {{format}} Format
+
+**VDF — Vacter Document File** is a document container that behaves like a
+PDF from the outside and like a website from the inside. One small,
+super-compressed `.vdf` file carries a Zolto source document, every image,
+SVG and font it needs, and enough structure that any tool can verify its
+integrity byte-for-byte.
+
+![VDF banner](assets/banner.svg)
+
+[note title="At a glance"]
+- Starts with a text magic header `%VDF-1.0` — the same trick PDF uses
+- Ends with a binary trailer holding offsets and CRC-32 checksums
+- The payload is a standard ZIP — `unzip` and 7-Zip open it directly
+- Everything is DEFLATE-compressed at maximum level
+[/note]
+
+## Why a new format?
+
+PDF froze documents into print-era glyphs: fixed pages, binary blobs,
+fonts nobody can reuse. VDF keeps the *file-feel* of PDF — one attachment,
+one checksum, one predictable layout — but the payload is a living Zolto
+document that reflows on phones, renders math natively, draws charts as
+crisp SVG, and stays editable forever.
+
+@card-group cols=3
+@card title="PDF identity" icon="description"
+A `%VDF-1.0` magic line, a `VDFT` binary trailer with CRC-32 checksums and a
+`%%VDF-EOF` end marker, mirroring how PDF files frame themselves.
+@/card
+@card title="ZIP inside" icon="folder_zip"
+The payload is a stock ZIP archive. Unzip it, 7-Zip it, script it with
+Python `zipfile` — no lock-in, ever.
+@/card
+@card title="Zolto engine" icon="bolt"
+The entry document is Zolto: Markdown plus math, charts, diagrams, vector
+graphics and interactive widgets.
+@/card
+@/card-group
+
+## The layout, byte by byte
+
+A VDF file is three stacked sections. The 64-byte header makes the format
+instantly recognizable. The ZIP payload holds a `mimetype` entry first
+(uncompressed, like ODF), a `manifest.json` describing the document, the
+entry `document.zl` and an `assets/` tree. The 64-byte trailer records the
+ZIP offset and size plus CRC-32 checksums of the manifest and the entry
+document, so corruption is detectable without unpacking anything.
+
+## Compression you can feel
+
+VDF compresses every entry with DEFLATE at maximum level. Text-heavy Zolto
+sources shrink dramatically; SVGs (which are just text) shrink just as well.
+
+@chart bar title="Typical compression by content type" subtitle="uncompressed vs packed, illustrative" legend=false
+labels:
+Zolto text
+SVG art
+Web font (woff2)
+Manifest
+
+data:
+88
+71
+8
+62
+@/chart
+
+## Native mathematics
+
+Zolto renders mathematics to HTML and MathML without any external engine.
+The Lorentz factor below is live markup, not an image:
+
+@math label="eq:lorentz" name="Lorentz factor"
+\gamma = \frac{1}{\sqrt{1 - v^2/c^2}}
+@/math
+
+As shown in @ref(eq:lorentz), energy grows without bound as $v \to c$. Inline
+math like $E = \gamma m_0 c^2$ works anywhere in a paragraph.
+
+## Diagrams as first-class citizens
+
+@diagram sequence title="How a browser opens a VDF" id="vdf-flow"
+node ext label="Browser" shape="actor"
+node cli label="VDF viewer"
+node zip label="ZIP payload" shape="cylinder"
+
+ext ->> cli label="open report.vdf"
+cli ->> zip label="seek to zip_offset (trailer)"
+zip -->> cli label="document.zl + assets/"
+cli -->> ext label="rendered HTML"
+@/diagram
+
+## Vector graphics without image files
+
+The Zolto vector engine draws directly in the document — no asset round-trip:
+
+@vector width=560 height=180 theme="dark"
+artboard id="chip" x=10 y=10 w=540 h=160
+rect x=0 y=0 w=540 h=160 radius=18 fill="#10142A" stroke="#2A3355" strokeWidth=1
+circle cx=64 cy=80 r=30 fill="#5B3DF5" opacity=0.95
+circle cx=64 cy=80 r=44 fill="none" stroke="#5B3DF5" strokeWidth=2 opacity=0.35
+circle cx=64 cy=80 r=58 fill="none" stroke="#00C2D1" strokeWidth=2 opacity=0.25
+text x=140 y=72 size=24 weight=700 fill="#FFFFFF"
+one file · every asset
+@endtext
+text x=140 y=104 size=14 fill="#9AA6C4"
+images, SVG, fonts — packed & checksummed
+@endtext
+@endartboard
+@/vector
+
+## Assets travel with the document
+
+This file bundles three asset groups: the **banner SVG** you saw at the top,
+the **logo** below, and two **subset web fonts** (regular + bold, ~21 KB
+each) that a viewer can apply for pixel-perfect typography offline.
+
+![The VDF logo](assets/logo.svg "VDF — Vacter Document File mark")
+
+Term
+: An archive-relative file stored under `assets/`, listed in `manifest.json`.
+
+Font assets follow a simple convention: any `assets/fonts/*.woff2` is picked
+up automatically by the official viewers and injected as a web font.
+
+## Interactive documents
+
+Because the payload is rendered by an engine, a VDF can ask questions:
+
+@interactive {
+@quiz "VDF knowledge check" {
+@mcq "Which archive format lives inside a .vdf?" {
+@correct "ZIP"
+@choice "TAR"
+@choice "7z"
+@hint
+It is the format every OS can already open.
+@end
+@explain
+The payload is a standard ZIP archive — openable by unzip, 7-Zip and Python.
+@end
+}
+@truefalse "The VDF trailer stores CRC-32 checksums." answer true
+}
+}
+@/interactive
+
+## A quick comparison
+
+| | PDF | VDF |
+|---|---|---|
+| Magic header | `%PDF-1.7` | `%VDF-1.0` |
+| Payload | object streams | ZIP + Zolto |
+| Reflows on mobile | rarely | always |
+| Math | embedded fonts | native markup |
+| Interactivity | forms at best | full runtime |
+| Openable without VDF tools | — | any ZIP tool |
+
+## Summary
+
+A `.vdf` is small enough to email, structured enough to verify, open enough
+to unpack with anything, and rich enough to render an entire interactive
+document. That is the whole idea.
+
+Built with the Zolto engine — https://github.com/uxle/Zolto

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- VDF — Vacter Document File : master logo -->
+  <defs>
+    <linearGradient id="vdfGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#5B3DF5"/>
+      <stop offset="1" stop-color="#00C2D1"/>
+    </linearGradient>
+    <linearGradient id="foldGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#241562"/>
+      <stop offset="1" stop-color="#0B8FA3"/>
+    </linearGradient>
+  </defs>
+
+  <!-- document sheet with a cut top-right corner -->
+  <path d="M136 32 H288 L416 160 V440 A40 40 0 0 1 376 480 H136
+           A40 40 0 0 1 96 440 V72 A40 40 0 0 1 136 32 Z"
+        fill="url(#vdfGrad)"/>
+
+  <!-- folded corner flap -->
+  <path d="M288 32 V120 A40 40 0 0 0 328 160 H416 Z"
+        fill="url(#foldGrad)" opacity="0.85"/>
+
+  <!-- V monogram -->
+  <path d="M187 196 L256 374 L325 196"
+        fill="none" stroke="#FFFFFF" stroke-width="46"
+        stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- baseline accent -->
+  <path d="M164 424 H348"
+        stroke="#FFFFFF" stroke-width="26" stroke-linecap="round" opacity="0.92"/>
+</svg>

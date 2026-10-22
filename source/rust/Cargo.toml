@@ -1,0 +1,31 @@
+[workspace]
+resolver = "2"
+members = ["crates/vdf-core", "crates/vdf-cli", "crates/vdf-jni"]
+
+[workspace.package]
+version = "1.0.0"
+edition = "2021"
+license = "MIT OR Apache-2.0"
+repository = "https://vacter.dev/vdf"
+description = "VDF — Vacter Document File. A PDF-like document format powered by Zolto."
+
+[workspace.dependencies]
+vdf-core = { path = "crates/vdf-core" }
+zip = { version = "2", default-features = false, features = ["deflate"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+crc32fast = "1"
+flate2 = { version = "1", default-features = false, features = ["rust_backend"] }
+tar = "0.4"
+time = { version = "0.3", features = ["formatting"] }
+clap = { version = "4", features = ["derive"] }
+clap_complete = "4"
+jni = "0.21"
+
+[profile.release]
+opt-level = "z"
+lto = true
+codegen-units = 1
+strip = true
+panic = "abort"

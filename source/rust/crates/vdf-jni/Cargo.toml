@@ -1,0 +1,15 @@
+[package]
+name = "vdf-jni"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "JNI bindings for VDF (Vacter Document File) — powers the Android library (AAR)"
+
+[lib]
+crate-type = ["cdylib"]
+path = "src/lib.rs"
+
+[dependencies]
+vdf-core = { workspace = true }
+jni = { workspace = true }
+serde_json = { workspace = true }

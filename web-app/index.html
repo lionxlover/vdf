@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VDF Viewer</title>
+<link rel="icon" href="icons/icon32.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#2457FF">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="VDF">
+<link rel="stylesheet" href="viewer.css">
+<script src="lib/zolto.bundle.js" defer></script>
+<script src="viewer.js" defer></script>
+</head>
+<body>
+
+<!-- ═══ landing ═══ -->
+<div id="landing">
+  <div class="card">
+    <img src="icons/icon128.png" alt="" width="96" height="96">
+    <h1>VDF Viewer</h1>
+    <p class="sub">Open a <b>Vacter Document File</b> — a PDF-like archive of a Zolto
+    document with its images, SVGs and fonts — right in your browser or as an installed app.</p>
+    <div id="drop">Drop a <code>.vdf</code> file here</div>
+    <button id="pick" class="primary">Choose file…</button>
+    <input type="file" id="file" accept=".vdf,application/vnd.vacter.vdf,.zip,application/zip" hidden>
+    <p class="hint">Everything is parsed locally — no network, no uploads.</p>
+    <div id="err" class="err" hidden></div>
+  </div>
+</div>
+
+<!-- ═══ document view ═══ -->
+<div id="app" hidden>
+  <header class="vdf-top">
+    <img src="icons/icon32.png" alt="VDF">
+    <span class="t" id="doc-title"></span>
+    <span class="meta" id="doc-meta"></span>
+    <span class="fill"></span>
+    <button id="open-another" class="ghost">Open another…</button>
+    <span class="vdf-pill">VDF</span>
+  </header>
+  <main class="doc">
+    <div id="vdf-doc"></div>
+  </main>
+</div>
+
+</body>
+</html>

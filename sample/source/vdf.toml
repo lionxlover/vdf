@@ -1,0 +1,12 @@
+# VDF showcase project — builds sample.vdf
+
+[document]
+entry = "document.zl"
+title = "The VDF Format — Vacter Document File"
+author = "Vacter Project"
+subject = "A tour of the VDF 1.0 container and the Zolto features it carries"
+keywords = ["vdf", "zolto", "sample", "showcase"]
+
+[build]
+runtime = false
+output  = "sample.vdf"

@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1260 512" width="1260" height="512" role="img" aria-label="VDF logo">
+  <title>VDF logo</title>
+  <g transform="translate(60 36) scale(2.2)"><g fill="none" stroke="#2457FF" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7H98L143 52V177Q143 193 127 193H23Q7 193 7 177V23Q7 7 23 7Z"/><path d="M98 9V38Q98 52 112 52H141"/><path d="M30 76H120"/><path d="M42 100H108"/><path d="M54 124H96"/><rect x="68" y="146" width="14" height="14" rx="2.5" fill="#FF3D81" stroke="none" transform="rotate(45 75 153)"/></g></g><g transform="translate(470 100) scale(2.6)"><g fill="none" stroke="#2457FF" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"><path d="M10 40L40 120L70 40"/><circle cx="138" cy="80" r="40"/><path d="M178 0V120"/><path d="M236 120V48A30 30 0 0 1 266 18"/><path d="M214 40H260"/></g></g>
+</svg>

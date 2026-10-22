@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="VDF icon">
+  <title>VDF icon</title>
+  <rect width="200" height="200" rx="42" fill="#2457FF"/>
+  <g fill="none" stroke="#fff" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"><path d="M62 24H116L156 64V158Q156 176 138 176H62Q44 176 44 158V42Q44 24 62 24Z"/><path d="M116 26V52Q116 64 128 64H154"/><path d="M72 94H128"/><path d="M88 120H112"/><rect x="92" y="140" width="16" height="16" rx="3" fill="#FF3D81" stroke="none" transform="rotate(45 100 148)"/></g>
+</svg>
